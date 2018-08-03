@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'DjangoUeditor',
     'user_operation.apps.UserOperationConfig',#用户操作
     'xadmin',#xadmin注册
-    'crispy_forms',
+    'crispy_forms',#登录校验
     'rest_framework',
 ]
 
@@ -70,10 +70,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'DianShop.urls'
+
 #以后REST_FRAMEWORK的配置都在这里（drf分页）
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS':
-        "rest_framework.pagination.PageNumberPagination",
+    #配置分页的类
+    'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
     'PAGE_SIZE':10,
 }
 
@@ -104,7 +105,7 @@ WSGI_APPLICATION = 'DianShop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dianshangShop',
+        'NAME': 'tiantianshop',
         'USER':'root',
         'PASSWORD':12345,
         'HOST':'localhost',
@@ -134,11 +135,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
+#设置中文
 LANGUAGE_CODE = 'zh-hans'
-
+#设置时区
 TIME_ZONE = 'Asia/Shanghai'
-
+#国际化
 USE_I18N = True
 
 USE_L10N = True
@@ -153,5 +154,5 @@ STATIC_URL = '/static/'
 STATICFTLES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-MEDIA_URL = "/static/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,"static/media")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")

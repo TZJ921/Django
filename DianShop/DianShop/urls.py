@@ -13,10 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from DianShop.settings import MEDIA_ROOT
-from goods.views_base import GoodsListView
+from goods.views import GoodsListView
 from django.views.static import serve
 import xadmin
 from rest_framework.documentation import include_docs_urls
@@ -24,7 +24,7 @@ from rest_framework.documentation import include_docs_urls
 # from django.contrib import admin
 
 # from goods.views import GoodsListViewSet,CategoryViewSet
-router = DefaultRouter()
+# router = DefaultRouter()
 # router.register(r'goods',GoodsListViewSet)
 # router.register(r'categorys',CategoryViewSet)
 
@@ -33,8 +33,11 @@ urlpatterns = [
     # url(r'^index/',views.index),
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
-    url(r'^goods/$',GoodsListView.as_view(),name="goods_list"),
-    url(r'docs/', include_docs_urls(title="甜甜商店")),
-    url(r'^api-auth/',include('rest_framework.urls',namespace='rest_framework')),
+    # 配置请求路径
+    url(r'^goods/$', GoodsListView.as_view(), name="goods_list"),
+    # 配置访问文档的路径
+    url(r'^docs/', include_docs_urls(title="甜甜商店")),
+    # 配置认证
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ]

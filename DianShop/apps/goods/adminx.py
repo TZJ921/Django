@@ -2,7 +2,6 @@ import xadmin
 from .models import Goods,GoodsCategory,GoodsCategoryBrand,GoodsImage,Banner
 
 
-
 class GoodsAdmin(object):
    #根据字段控制显示
    list_display = ["name","click_num","sold_num","fav_num","goods_num","market_price",
@@ -10,7 +9,6 @@ class GoodsAdmin(object):
    #添加搜索框，并且提供name搜索
    search_fields = ["name"]
    style_fields = {"goods_desc":"ueditor"}
-
 
 
 class GoodsCategoryAdmin(object):
@@ -23,6 +21,7 @@ class GoodsCategoryBrandAdmin(object):
 
 class GoodsImageAdmin(object):
    pass
+
 class BannerAdmin(object):
    pass
 

@@ -15,7 +15,7 @@ sys.path.append(dirname +"../")
 print(sys.path)
 
 #设置独立使用models--从manage.py拷贝过来的
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AtguiguShop.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DianShop.settings")
 
 
 #导入django设置
@@ -28,9 +28,8 @@ from goods.models import Goods,GoodsImage,GoodsCategoryBrand,GoodsCategory
 from db_tools.data.product_data import row_data
 # i = 1
 for goods_detail in row_data:
-	# print(goods_detail)
 	goods = Goods()
-	goods.name = goods_detail["name"]
+	goods.name = goods_detail["name"] if goods_detail["name"] is not None else ""
 	goods.market_price = float(goods_detail["market_price"].replace("￥","").replace("元",""))
 	goods.shop_price = float(goods_detail["sale_price"].replace("￥","").replace("元",""))
 	#商品简单描述
@@ -49,6 +48,7 @@ for goods_detail in row_data:
 	#最好去查一下是否有这个类型
 	categorys = GoodsCategory.objects.filter(name=categorys_name)
 	if categorys:
+		#商品属于仕么类目
 		goods.category = categorys[0]
 	#保存goods
 	goods.save()
@@ -59,6 +59,7 @@ for goods_detail in row_data:
 		goods_image_instace = GoodsImage()
 		goods_image_instace.image = goods_image
 		goods_image_instace.goods = goods
+		# print(goods_image)
 		#保存图片
 		goods_image_instace.save()
 

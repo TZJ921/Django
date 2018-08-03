@@ -28,7 +28,7 @@ class UserProfile(AbstractUser):
 #短信验证码
 class VerifyCode(models.Model):
     #验证码
-    code = models.CharField(max_length=4, verbose_name="验证码",help_text="验证码")
+    code = models.CharField(max_length=6, verbose_name="验证码",help_text="验证码")
     #手机号
     mobile = models.CharField(max_length=11, verbose_name="电话号码")
    #添加时间（校验刚才有没有注册）
@@ -36,7 +36,7 @@ class VerifyCode(models.Model):
 
     class Meta:
         verbose_name = "短信验证码"
-        verbose_name_plural = "verbose_name"
+        verbose_name_plural = "短信验证码"
 
     def __str__(self):
         return self.code

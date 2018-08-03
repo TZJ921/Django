@@ -10,12 +10,10 @@ class GlobalSettings(object):
     site_footer = "tiantian_shop"
 
 
-# class VerifyCodeAdmin(object):
-#     # 字段控制展示显示
-#     list_display = ['code','mobile','add_time']
-#     #注册
-#     xadmin.site.register(VerifyCode,VerifyCodeAdmin)
-#     xadmin.site.register(views.CommAdminView,GlobalSettings)
+class VerifyCodeAdmin(object):
+     # 字段控制展示显示
+    list_display = ['code','mobile','add_time']
 
+# 注册
+xadmin.site.register(VerifyCode, VerifyCodeAdmin)
 xadmin.site.register(views.CommAdminView,GlobalSettings)
-# xadmin.site.register(views.CommAdminView,GlobalSettings)
