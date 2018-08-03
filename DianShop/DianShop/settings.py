@@ -57,9 +57,12 @@ INSTALLED_APPS = [
     'xadmin',#xadmin注册
     'crispy_forms',#登录校验
     'rest_framework',
+    'django_filters',
+    'corsheaders',#支持跨域请求
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,11 +74,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'DianShop.urls'
 
+#允许跨域请求
+CORS_ORIGIN_ALLOW_ALL = True
+
 #以后REST_FRAMEWORK的配置都在这里（drf分页）
 REST_FRAMEWORK = {
     #配置分页的类
     'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
     'PAGE_SIZE':10,
+    'DEFAULT_FILTER_BACKENDS':('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
 TEMPLATES = [
